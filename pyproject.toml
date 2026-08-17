@@ -7,7 +7,9 @@ authors = [
     { name = "s04tneub", email = "s04tneub@uni-bonn.de" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "pygame>=2.6.1",
+]
 
 [project.scripts]
 kellox-basement = "kellox_basement:main"
