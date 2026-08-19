@@ -272,7 +272,7 @@ class Image_Handler:
             raise RuntimeError("Image_Handler: no active scene to add an drawable to")
         self.current_scene.add_drawable(drawable)
 
-  
+
     def make_animation(self, image_paths, frame_duration=0.1, loop=True, scale=None):
         """build an Animation straight from a list of image
         file paths (each one loaded/cached through load_image).
@@ -280,7 +280,7 @@ class Image_Handler:
         frames = [self.load_image(p, scale=scale) for p in image_paths]
         return Animation(frames, frame_duration=frame_duration, loop=loop)
 
-   
+
     def tick(self):
         """Advance the clock, capping the loop at FPS (60 by default), and
         return the elapsed time in seconds (dt). Call exactly once per

@@ -7,13 +7,12 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from graphics.image_handler import Image_Handler
 from graphics.special_screens.main_screen import Main_Screen
-from graphics.special_screens.credits import Credit_Screen
+from graphics.special_screens.credits import Credits_Screen
 
 
 class Game_State:
     """
-    self.state is a simple string based state machine ("menu",
-      "playing", "paused", ...). Register per-state update logic with
+    Register per-state update logic with
       register_state(), and switch state (and the matching scene) with
       change_state().
     self.image_handler is the single Image_Handler instance used for
@@ -39,8 +38,10 @@ class Game_State:
         self.image_handler.add_scene(...) / add_entity_to_scene(...).
         """
         main_screen = Main_Screen(self.image_handler)
+        credit_screen = Credits_Screen(self.image_handler)
 
         self.image_handler.add_scene(main_screen)
+        self.image_handler.add_scene(credit_screen)
 
 
     def register_state(self, name, update_callback):
