@@ -1,7 +1,7 @@
-#wird spätere start datei
-#in libs die dateien sind gerade nur beispiele
+from game_logic.game_state import Game_State
 def main():
-    print("Main wurde gestartet")
+    game = Game_State()
+    game.run()
 
 
 if __name__ == "__main__":
