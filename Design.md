@@ -8,16 +8,20 @@ Skills spezialisiert auf Klasse
 4 Aktive Skills möglich und 2 Passive(Potentiell mehr mal gucken)
 Würde man ansprechen mit Aktiv Skill 1 zu Aktiv Skill 4 von Links nach Rechts
 Manche Skills Statt Mana Cooldown
+1 Waffen Skill extra z.B. schlagen mit der Waffe oder so (sollte nicht zu oft nutzbar sein z.B. durch Cooldown oder limit insgesamt)
+1 mal bewegen
+1 Standardangriff, welche gleich ist bei charakteren der selben Klasse
 
 
 Effekte/Feld Effekte:
 Feld Effekte durch z.b. Wasser -> gibt man an in dem Array, siehe unten bei Combat
-
+Durch Waffen/Items/Skills natürlich auch möglich
+Sollten cooldown haben
 
 
 Combat Insgesamt:
 10x10
-Objekte und Gegner verteilt (Weg von Spieler Spawn)
+Objekte und Gegner verteilt (weg von Spieler Spawn)
 Feld Erstellen mit Array? Das man dann in anderen Dateien machen kann, also da wären alle Feld Arrays in einer anderen Datei
 Reihenfolge zufall (vlt nach Speed?), aber am besten jeder nur 1 mal pro Turn außer Elite und Boss
 
@@ -28,10 +32,6 @@ Squad von 4 Menschen (zwischen 1 und 4)
 Skill Auswahl nach Level-Up
 XP Pro Level immer gleich für Level Up
 Pro Kampf 2 Level an Xp auf Gegner logisch Verteilt
-
-Standardmäßig: 
-1 Bewegung pro Turn
-1 Standardangriff der gleich ist für Charaktere der selben Klassen
 
 Stats pro Charakter:
 X = Auswahl bei Level Up
@@ -82,6 +82,7 @@ Auf 25% Leben wenn drunter
 
 Nach Runs:
 Item unlocks und Skill unlocks für die Klassen mit denen Run geschafft wurde
+kann run nicht speichern sondern neu machen wenn man aufhört
 
 
 

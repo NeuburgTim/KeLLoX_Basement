@@ -1,0 +1,1 @@
+#skills für alle entities die nicht vom spieler kontrolliert werden
