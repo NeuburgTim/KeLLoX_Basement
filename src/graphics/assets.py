@@ -1,6 +1,5 @@
 """
-Loading and caching of images and spritesheets. This module only knows
-how to get pixels from disk onto pygame.Surfaces.
+Loading and caching of images and spritesheets.
 """
 
 import os
@@ -44,8 +43,7 @@ class AssetManager:
 
     def load_drawable(self, path, name, pos=(0, 0), visible=True, layer=0,
                        scale=None, colorkey=None, use_alpha=True):
-        """Convenience wrapper: load an image and wrap it in a Drawable
-        in one go.
+        """Load an image and wrap it in a Drawable.
         """
         image = self.load_image(path, scale, colorkey, use_alpha)
         return Drawable(name, image=image, pos=pos, visible=visible, layer=layer)
