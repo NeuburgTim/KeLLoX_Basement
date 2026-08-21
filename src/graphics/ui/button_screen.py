@@ -10,13 +10,15 @@ from graphics.ui.button import Button, ButtonGroup
 
 class ButtonScreen(Scene):
 
-    def __init__(self, name, app, background_path=None,
-                 title_text=None, title_font=None, title_color=(255, 255, 255),
-                 title_pos=None, button_specs=(), button_size=(240, 60),
-                 button_font=None, button_spacing=20):
+    def __init__(self, name: str, app: "GameApp", background_path: str | None = None,
+                 title_text: str | None = None, title_font: pygame.font.Font | None = None,
+                 title_color: tuple[int, int, int] = (255, 255, 255),
+                 title_pos: tuple[int, int] | None = None, button_specs: list | tuple = (),
+                 button_size: tuple[int, int] = (240, 60),
+                 button_font: pygame.font.Font | None = None, button_spacing: int = 20) -> None:
         """
         name:            scene name, used by SceneManager.set_scene()
-        app:             the GameApp instance — gives access to .assets,
+        app:             the GameApp instance â€” gives access to .assets,
                          .screen, .game_data and .change_mode()
         background_path: optional path to a background image
         title_text:      optional heading drawn at the top of the screen
@@ -43,7 +45,8 @@ class ButtonScreen(Scene):
         self.button_group = ButtonGroup()
         self._build_buttons(button_specs, button_size, button_font, button_spacing)
 
-    def _build_buttons(self, button_specs, button_size, button_font, spacing):
+    def _build_buttons(self, button_specs: list | tuple, button_size: tuple[int, int],
+                        button_font: pygame.font.Font | None, spacing: int) -> None:
         for spec in button_specs:
             if isinstance(spec, dict):
                 spec = dict(spec)
@@ -66,21 +69,21 @@ class ButtonScreen(Scene):
             self.app.screen.get_size(), spacing=spacing
         )
 
-    def get_button(self, label):
+    def get_button(self, label: str) -> Button | None:
         """Look up a button by its text, e.g.:
         screen.get_button("Play").set_callback(...)
         """
         return self.button_group.get(label)
 
-    def handle_event(self, event):
+    def handle_event(self, event: pygame.event.Event) -> None:
         """GameApp forwards raw pygame events here."""
         self.button_group.handle_event(event)
 
-    def update(self, dt):
+    def update(self, dt: float) -> None:
         super().update(dt)
         self.button_group.update(dt)
 
-    def draw(self, surface):
+    def draw(self, surface: pygame.Surface) -> None:
         super().draw(surface)
 
         if self.title_text:

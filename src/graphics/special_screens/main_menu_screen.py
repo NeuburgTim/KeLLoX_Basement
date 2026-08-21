@@ -4,7 +4,7 @@ from graphics.ui.button_screen import ButtonScreen
 
 class MainMenuScreen(ButtonScreen):
 
-    def __init__(self, app, background_path="./assets/images/screen_backgrounds/main_screen.jpg"):
+    def __init__(self, app: "GameApp", background_path: str = "./assets/images/screen_backgrounds/main_screen.jpg") -> None:
         button_specs = [
             ("Play", None),
             ("Options", None),

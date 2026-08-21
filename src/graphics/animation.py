@@ -5,7 +5,7 @@ class Animation:
     AssetManager.load_spritesheet().
     """
 
-    def __init__(self, frames, frame_duration=0.1, loop=True):
+    def __init__(self, frames: list, frame_duration: float = 0.1, loop: bool = True) -> None:
         if not frames:
             raise ValueError("Animation needs at least one frame")
 
@@ -16,7 +16,7 @@ class Animation:
         self._timer = 0.0
         self.finished = False
 
-    def update(self, dt):
+    def update(self, dt: float) -> None:
         if self.finished:
             return
 
@@ -32,10 +32,10 @@ class Animation:
                     self.finished = True
                     break
 
-    def reset(self):
+    def reset(self) -> None:
         self.current_frame = 0
         self._timer = 0.0
         self.finished = False
 
-    def get_current_frame(self):
+    def get_current_frame(self) -> "pygame.Surface":
         return self.frames[self.current_frame]

@@ -11,10 +11,11 @@ from graphics.scene import Drawable
 
 class AssetManager:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._image_cache = {}
 
-    def load_image(self, path, scale=None, colorkey=None, use_alpha=True):
+    def load_image(self, path: str, scale: tuple[int, int] | None = None,
+                    colorkey: tuple[int, int, int] | None = None, use_alpha: bool = True) -> pygame.Surface:
         """
         path: file path to the image
         scale: optional (width, height) to resize the image to
@@ -41,14 +42,16 @@ class AssetManager:
         self._image_cache[cache_key] = image
         return image
 
-    def load_drawable(self, path, name, pos=(0, 0), visible=True, layer=0,
-                       scale=None, colorkey=None, use_alpha=True):
+    def load_drawable(self, path: str, name: str, pos: tuple[int, int] = (0, 0), visible: bool = True, layer: int = 0,
+                       scale: tuple[int, int] | None = None, colorkey: tuple[int, int, int] | None = None,
+                       use_alpha: bool = True) -> Drawable:
         """Load an image and wrap it in a Drawable.
         """
         image = self.load_image(path, scale, colorkey, use_alpha)
         return Drawable(name, image=image, pos=pos, visible=visible, layer=layer)
 
-    def load_spritesheet(self, path, frame_width, frame_height, num_frames, scale=None):
+    def load_spritesheet(self, path: str, frame_width: int, frame_height: int, num_frames: int,
+                          scale: tuple[int, int] | None = None) -> list[pygame.Surface]:
         """Slice a horizontal spritesheet into a list of frame Surfaces,
         used for building an Animation with make_animation() or directly.
         """
@@ -62,12 +65,13 @@ class AssetManager:
             frames.append(frame)
         return frames
 
-    def make_animation(self, image_paths, frame_duration=0.1, loop=True, scale=None):
+    def make_animation(self, image_paths: list[str], frame_duration: float = 0.1, loop: bool = True,
+                        scale: tuple[int, int] | None = None) -> Animation:
         """Build an Animation straight from a list of image file paths
         (each one loaded/cached through load_image).
         """
         frames = [self.load_image(p, scale=scale) for p in image_paths]
         return Animation(frames, frame_duration=frame_duration, loop=loop)
 
-    def clear_cache(self):
+    def clear_cache(self) -> None:
         self._image_cache.clear()
