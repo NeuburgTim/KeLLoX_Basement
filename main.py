@@ -1,6 +1,8 @@
-from game_logic.game_state import Game_State
+from app import GameApp
+
+
 def main():
-    game = Game_State()
+    game = GameApp(title="Kellox Basement")
     game.run()
 
 

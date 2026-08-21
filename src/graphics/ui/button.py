@@ -1,4 +1,3 @@
-
 import pygame
 
 
@@ -24,7 +23,7 @@ class Button:
         """
         Executes function on click
         For Example:
-        button.set_callback(lambda: game.change_state('playing'))
+        button.set_callback(lambda: game.change_mode('playing'))
         """
         self.on_click = callback
 

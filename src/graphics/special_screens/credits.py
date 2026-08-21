@@ -1,15 +1,15 @@
-from graphics.screen import Button_Screen
-from graphics.image_handler import Image_Handler
+from graphics.ui.button_screen import ButtonScreen
 
 
-class Credits_Screen(Button_Screen):
-    def __init__(self, image_handler: Image_Handler, background_path="./assets/images/screen_backgrounds/credit_screen.png"):
+class CreditsScreen(ButtonScreen):
+
+    def __init__(self, app, background_path="./assets/images/screen_backgrounds/credit_screen.png"):
         button_specs = [
-            ("Back", lambda: image_handler.set_scene("main_screen")),
+            ("Back", lambda: app.change_mode("main_menu")),
         ]
         super().__init__(
             name="credits",
-            image_handler=image_handler,
+            app=app,
             background_path=background_path,
             title_text="Credits",
             button_specs=button_specs,

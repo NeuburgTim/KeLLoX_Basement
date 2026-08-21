@@ -1,21 +1,23 @@
 """
-Generic base class for "background + title + a stack of buttons" screens.
+Generic base class for "background + title + a stack of buttons" screens
+like the main menu or the credits screen.
 """
 
 import pygame
-from graphics.image_handler import Scene
-from graphics.ui import Button, ButtonGroup
+from graphics.scene import Scene
+from graphics.ui.button import Button, ButtonGroup
 
 
-class Button_Screen(Scene):
+class ButtonScreen(Scene):
 
-    def __init__(self, name, image_handler, background_path=None,
+    def __init__(self, name, app, background_path=None,
                  title_text=None, title_font=None, title_color=(255, 255, 255),
                  title_pos=None, button_specs=(), button_size=(240, 60),
                  button_font=None, button_spacing=20):
         """
-        name:            scene name, used by Image_Handler.set_scene()
-        image_handler:   the shared Image_Handler instance
+        name:            scene name, used by SceneManager.set_scene()
+        app:             the GameApp instance — gives access to .assets,
+                         .screen, .game_data and .change_mode()
         background_path: optional path to a background image
         title_text:      optional heading drawn at the top of the screen
         title_pos:       defaults to horizontally centered, y=100
@@ -27,17 +29,15 @@ class Button_Screen(Scene):
         """
         background = None
         if background_path:
-            background = image_handler.load_image(
-                background_path, scale=image_handler.screen.get_size()
-            )
+            background = app.assets.load_image(background_path, scale=app.screen.get_size())
         super().__init__(name=name, background=background)
 
-        self.image_handler = image_handler
+        self.app = app
 
         self.title_text = title_text
         self.title_font = title_font or (pygame.font.SysFont(None, 64) if title_text else None)
         self.title_color = title_color
-        screen_w, _ = self.image_handler.screen.get_size()
+        screen_w, _ = app.screen.get_size()
         self.title_pos = title_pos or (screen_w // 2, 100)
 
         self.button_group = ButtonGroup()
@@ -46,7 +46,7 @@ class Button_Screen(Scene):
     def _build_buttons(self, button_specs, button_size, button_font, spacing):
         for spec in button_specs:
             if isinstance(spec, dict):
-                spec = dict(spec) 
+                spec = dict(spec)
                 label = spec.pop("label")
                 callback = spec.pop("callback", None)
                 size = spec.pop("size", button_size)
@@ -63,7 +63,7 @@ class Button_Screen(Scene):
             self.button_group.add(button)
 
         self.button_group.layout_vertical_centered(
-            self.image_handler.screen.get_size(), spacing=spacing
+            self.app.screen.get_size(), spacing=spacing
         )
 
     def get_button(self, label):
@@ -73,7 +73,7 @@ class Button_Screen(Scene):
         return self.button_group.get(label)
 
     def handle_event(self, event):
-        """Image_Handler/Game_State should forward raw pygame events here"""
+        """GameApp forwards raw pygame events here."""
         self.button_group.handle_event(event)
 
     def update(self, dt):
